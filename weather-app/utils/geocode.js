@@ -11,10 +11,12 @@ const fetch_location_data = (address, callback) => {
     } else if (response.body.features.length === 0) {
       callback("Unable to find location", undefined);
     } else {
-      const lat = response.body.features[0].center[1];
-      const lon = response.body.features[0].center[0];
-
-      callback(undefined, [lat, lon]);
+      callback(undefined, {
+        lat: response.body.features[0].center[1],
+        lon: response.body.features[0].center[0],
+        full_detail: response.body.features[0].place_name,
+        short_detail: response.body.features[0].text,
+      });
     }
   });
 };

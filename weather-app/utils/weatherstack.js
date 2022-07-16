@@ -1,8 +1,6 @@
 const request = require("request");
 
-const fetch_weather_data = (lat_lon_arr, callback) => {
-  const lat = lat_lon_arr[0];
-  const lon = lat_lon_arr[1];
+const fetch_weather_data = (lat, lon, callback) => {
   const weather_url = `http://api.weatherstack.com/current?access_key=57616d1b5eee9836067ee022fd83359a&query=${lat},${lon}`;
 
   request({ url: weather_url, json: true }, (error, response) => {
