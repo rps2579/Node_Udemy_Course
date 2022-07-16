@@ -12,3 +12,16 @@ request({ url: url, json: true }, (error, response) => {
         console.log(response.body.current.weather_descriptions[0]);
     }
 });
+
+const location_url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Yarada.json?access_token=pk.eyJ1IjoicnBzMjU3OSIsImEiOiJjbDVuejF0c2swYzNzM2ZtandycXU4bTh0In0.vhJoOvO-XF_AE-H_x94hrQ&limit=1';
+
+request({ url: location_url, json: true }, (error, response) => {
+    if (error) {
+        console.log('Unable to connect to location service');
+    } else if (response.body.features.length === 0) {
+        console.log('Unable to find location');
+    } else {
+        console.log(response.body.features[0].center);
+        console.log(response.body.features[0].center[1], response.body.features[0].center[0]);
+    }
+});
